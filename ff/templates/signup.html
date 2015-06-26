@@ -1,0 +1,29 @@
+{% extends 'base_out.html' %}
+{% block title %}Вступить в клуб{% endblock %}
+
+{% block contentright %}
+ 
+        <div class="col-md-3 col-md-offset-1 right-block-index">
+            <form>
+              <div class="form-group">
+              <input type="text" class="form-control input-text" id="exampleInputEmail1" placeholder="Клубный код">
+              </div>
+              <div class="form-group">
+              <input type="email" class="form-control input-text" id="exampleInputEmail1" placeholder="Эл.почта">
+              </div>
+              <div class="form-group">
+              <input type="password" class="form-control input-text" id="exampleInputPassword1" placeholder="Пароль">
+              </div>
+              <button type="submit" class="btn btn-login pull-right">            
+              <span class="glyphicon glyphicon-menu-right center-block" aria-hidden="true"></span>
+              </button>
+
+              <ul class="list-inline social-icon text-left">
+              <li><i class="flaticon-facebook2"></i>Facebook</li>
+              <li><i class="flaticon-vk5"></i>Vk.com</li>
+              </ul>
+            </form>
+            <a href="/nocode">Нет клубного кода?</a>    
+            
+        </div>
+{% endblock %}
