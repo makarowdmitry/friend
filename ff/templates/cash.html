@@ -1,0 +1,35 @@
+{% extends 'base_in.html' %}
+{% block title %}Накопления{% endblock %}
+
+{% block content %}   
+    <!-- Order section -->
+  
+
+      <section class="container-fluid section-in section-table">
+      <h1 class="text-center">Накопления #ДрузьямДрузей</h1>
+      <p class="text-center">Получайте 10% в месяц от суммы вклада. Вклады от 2 месяцев</p>
+      <div class="row">
+        <div class="col-md-12 text-center">
+        <a href="/faq" class="text-center">Подробнее</a>          
+        </div>
+      </div>
+      
+      <div class="row margin-my-block">
+        <div class="col-md-6 col-md-offset-3">
+          <form>
+          <div class="form-group">
+            <input type="text" class="form-control  input-order" id="exampleInputPassword1" placeholder="Введите телефон">
+          </div>
+         
+          <button type="submit" class="btn-order-yes pull-right">Сделать вклад</button>
+          <div class="clearfix"></div>
+
+          <p class="text-right">Спасибо, мы свяжемся с вами в ближайшее время</p>
+
+        </form>
+        </div>
+      </div>
+      </section>
+
+    <!-- /Order section -->
+     {% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base_in.html' %}
+{% block title %}Приглашайте друзей{% endblock %}
+
+{% block content %}    
+<!-- Order section -->
+
+      <section class="container-fluid section-in section-table">
+      <h1 class="text-center">Приглашайте друзей</h1>
+           
+      <div class="row margin-my-block">
+        <div class="col-md-6 col-md-offset-3">  
+        <form>
+          <div class="form-group">
+            <textarea class="form-control input-order" rows="3" placeholder="Введите email ваших друзей через запятую"></textarea>
+          </div> 
+
+
+        <button type="submit" class="btn-order-yes pull-right">Выслать приглашение</button> 
+
+          <p class="text-right">Спасибо, мы свяжемся с вами в ближайшее время</p>
+        </form>  
+   
+        </div>
+      </div>
+      </section>
+
+    <!-- /Order section -->
+ {% endblock %}

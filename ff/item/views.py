@@ -19,3 +19,27 @@ def forgotpass(request):
 
 def rules(request):
 	return render_to_response('rules.html')
+
+def price(request):
+	return render_to_response('price.html')
+
+def thanks(request):
+	return render_to_response('signup.html')
+
+def nogoods(request):
+	return render_to_response('nogoods.html')
+
+def cash(request):
+	return render_to_response('cash.html')
+
+def review(request):
+	return render_to_response('review.html')
+
+def invite(request):
+	return render_to_response('invite.html')
+
+def faq(request):
+	return render_to_response('faq.html')
+
+def order(request):
+	return render_to_response('order.html')
