@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^invite/$', invite),
     url(r'^faq/$', faq),
     url(r'^order/$', order),
+    url(r'^accounts/', include('allauth.urls')),
     url(r'^$', index),
     ]
 

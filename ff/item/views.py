@@ -2,9 +2,23 @@
 from django.shortcuts import render_to_response, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from item.models import *
+from django.contrib import auth
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User,Group
+from django.core.urlresolvers import reverse
+from allauth.account.models import EmailAddress
+from operator import itemgetter
+import datetime
+from django.db.models import Count, Min, Sum
+from django.db import connection
+from django.core.mail import send_mail
+
 
 def index(request):
-	return render_to_response('login.html')
+	if not request.user.is_authenticated():
+		return redirect('/accounts/login/')
+
+	return redirect('/price/')
 
 def signup(request):
 	return render_to_response('signup.html')
