@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render_to_response, redirect
 from django.http import HttpResponse, HttpResponseRedirect
+from item.models import *
 
 def index(request):
 	return render_to_response('login.html')
@@ -21,7 +22,8 @@ def rules(request):
 	return render_to_response('rules.html')
 
 def price(request):
-	return render_to_response('price.html')
+	categories = Category.objects.all()
+	return render_to_response('price.html',{'categories':categories})
 
 def thanks(request):
 	return render_to_response('signup.html')
