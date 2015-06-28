@@ -14,6 +14,9 @@
       <link href="{% static 'css/mystyle.css' %}" rel="stylesheet">
       <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
       <link rel="stylesheet" type="text/css" href="{% static 'css/flaticon.css' %}"> 
+      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and /static queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -33,11 +36,19 @@
 
         <div class="row">
           <div class="col-md-2 pull-left img-logo-in"><a href="#"><img src="{% static 'img/logoin.png' %}"></a></div>
-          <div class="col-md-10 pull-left"><a href="#" class="text-logo"># ДрузьямДрузей</a></div>
+          <div class="col-md-10 pull-left"><a href="#" class="text-logo">#ДрузьямДрузей</a></div>
             <div class="text-right icon-logout icon-logout-mobile">
-              <a href="#">
+
+              <form method="post" action="{% url 'account_logout' %}">
+              {% if redirect_field_value %}
+              <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+              {% endif %}
+              <button type="submit">
                  <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
-              </a>       
+              </button>
+
+              </form>  
+
             </div>
         </div>
 
@@ -50,9 +61,19 @@
         </ul>
       </nav>
       <div class="col-md-3 text-right icon-logout icon-logout-desktop">
-      <a href="#">
-         <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
-      </a>       
+     
+        <form method="post" action="{% url 'account_logout' %}">
+        {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+        {% endif %}
+        <button type="submit">
+           <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+        </button>
+
+        </form>
+
+         
+         
       </div>
       </div>            
     </header>
@@ -60,11 +81,11 @@
 
 {% block content %}{% endblock %}
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
  	
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
      <script src="{% static 'js/bootstrap-select.js' %}"></script>
+
 
     
     {% block script %}{% endblock %}

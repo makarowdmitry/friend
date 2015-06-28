@@ -12,7 +12,7 @@ class Category(models.Model):
 
     class Meta:
         verbose_name = 'Категорию товаров'        
-        verbose_name_plural = 'Категория товаров'
+        verbose_name_plural = 'Категории товаров'
 
     def __unicode__(self):
         return u'%s' % (self.name)
@@ -31,4 +31,16 @@ class Good(models.Model):
 
 	def __unicode__(self):
 		return u'{0} {1} ({2} руб)'.format(self.category, self.specifications, self.price)
+
+class Faq(models.Model):
+    question = models.CharField(max_length=1250, verbose_name='Вопрос')
+    answer = models.CharField(max_length=2250, verbose_name='Ответ')
+
+
+    class Meta:
+        verbose_name = 'Вопрос'        
+        verbose_name_plural = 'Faq'
+
+    def __unicode__(self):
+        return u'%s' % (self.question)
 

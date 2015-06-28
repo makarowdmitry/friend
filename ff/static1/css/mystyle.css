@@ -1,6 +1,6 @@
 @font-face {
     font-family: Myriad Set Pro; /* Гарнитура шрифта */
-    src: url(fonts/myriadpro.ttf); /* Путь к файлу со шрифтом */
+    src: url(../fonts/MyriadProRegular.otf);/* Путь к файлу со шрифтом */
    }
 
 html,
@@ -107,21 +107,39 @@ margin-top: 110px;
 }
 
 
-.input-text {
-	background-color: transparent;
-	border-radius: 0px;
-	border: 0px;
-	border-bottom: 1px solid rgba(255,255,255,0.5);
-	padding-left: 0px;
-	padding-right: 50px;
-	color: #fff;
-	margin-bottom: 25px;
-	box-shadow: none;
+.right-block-index .form-group input {
+display: block;
+width: 100%;
+height: 34px;
+padding: 6px 12px;
+font-size: 14px;
+line-height: 1.42857;
+color: #555;
+background-color: #FFF;
+background-image: none;
+border: 1px solid #CCC;
+border-radius: 4px;
+box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;
+transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+background-color: transparent;
+border-radius: 0px;
+border: 0px;
+border-bottom: 1px solid rgba(255,255,255,0.5);
+padding-left: 0px;
+padding-right: 50px;
+color: #fff;
+margin-bottom: 25px;
+box-shadow: none;
 }
 
-.input-text:focus, .input-text:active{
+
+.right-block-index  .form-group input:focus, .right-block-index  .form-group input:active{
 	box-shadow: none;
 	border-color: #fff;
+}
+
+.right-block-index label {
+	display: none;
 }
 
 
@@ -320,11 +338,14 @@ margin-top: 110px;
 	color: #aaaaaa;
 
 }
-.icon-logout a {
+.icon-logout button {
 	height: 50px;
 	line-height: 50px;
 	color: #313334;
 	font-size: 16px;
+	border: none;
+	background: none;
+	cursor: pointer;
 }
 
 .icon-logout-mobile{
@@ -336,7 +357,7 @@ margin-top: 110px;
 	}
 
 .section-in {
-	max-width: 800px;
+	max-width: 600px;
 	height: 500px;
 	margin-bottom: 100px !important;
 }

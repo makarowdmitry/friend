@@ -4,55 +4,37 @@
 {% block content %}
     <!-- Order section -->
 
+
       <section class="container-fluid section-in section-table">
       <h1 class="text-center">Faq клуба</h1>           
       <div class="row margin-my-block">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-12">
 
          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-          <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingOne">
+
+          {% if faq.count > 0 %}
+              {% for q in faq %}
+
+            <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="heading{{q.id}}">
               <h4 class="panel-title">
-                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  Реквизиты для оплаты
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{q.id}}" aria-expanded="true" aria-controls="collapse{{q.id}}">
+                  {{q.question}}
                 </a>
               </h4>
             </div>
-            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+            <div id="collapse{{q.id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-{{q.id}}">
               <div class="panel-body">
-                Альфа-карты: 34180512523 <br>
-                Сбербанк: 58320851
+                {{q.answer}}
               </div>
             </div>
           </div>
-          <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingTwo">
-              <h4 class="panel-title">
-                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                   Вопрос 2
-                </a>
-              </h4>
-            </div>
-            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-              <div class="panel-body">
-                Ответ на вопрос 2
-              </div>
-            </div>
-          </div>
-          <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingThree">
-              <h4 class="panel-title">
-                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                  Вопрос 3
-                </a>
-              </h4>
-            </div>
-            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-              <div class="panel-body">
-                Ответ на вопрос 3
-              </div>
-            </div>
-          </div>
+
+
+              {% endfor %}
+          {% endif %}
+
+      
         </div>
    
         </div>
