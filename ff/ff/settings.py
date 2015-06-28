@@ -118,24 +118,31 @@ WSGI_APPLICATION = 'ff.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
+# DATABASES = {
+#     'default': {
+#     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#     'NAME': 'ff2',
+#     'USER': 'sfriend',
+#     'PASSWORD': 'pi1l74gj',
+#     'HOST': 'localhost', # Set to empty string for localhost.
+#     'PORT': '', # Set to empty string for default.
+#     }
+# }
+
+
 DATABASES = {
     'default': {
     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    'NAME': 'ff2',
+    'NAME': 'ff',
     'USER': 'sfriend',
     'PASSWORD': 'pi1l74gj',
-    'HOST': 'localhost', # Set to empty string for localhost.
-    'PORT': '', # Set to empty string for default.
+    'HOST': 'friends.cjtnnllhd8uz.us-west-2.rds.amazonaws.com', # Set to empty string for localhost.
+    'PORT': '5432', # Set to empty string for default.
     }
 }
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
+
 
 
 # Internationalization
