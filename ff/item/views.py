@@ -73,4 +73,10 @@ def faq(request):
 def order(request):
 	if not request.user.is_authenticated():
 		return redirect('/accounts/login/')
-	return render_to_response('order.html')
+	if request.method == 'POST':
+		id_goods = request.POST.get('id_goods', '')
+		categories = Category.objects.all()
+		return HttpResponse('order')
+		# return render_to_response('order.html')
+	else:
+		return redirect('/price/')
