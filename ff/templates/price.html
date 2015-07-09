@@ -109,7 +109,7 @@
         if(json_goods.length > 0){
 
              $.ajax({
-                    url: "/order/",
+                    url: "/order_save/",
                     type: "POST",
                     // dataType:"html",
                     data: {
@@ -119,8 +119,8 @@
                         alert('Ошибка получения запроса');
                          
                     },
-                    success: function(data){
-                      alert(data);
+                    success: function(){
+                      window.location.replace("/order");
 
                     }
                   });

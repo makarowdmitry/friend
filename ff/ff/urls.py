@@ -20,6 +20,7 @@ urlpatterns = [
     url(r'^thanks/$', thanks),
     url(r'^nogoods/$', nogoods),
     url(r'^cash/$', cash),
+    url(r'^order_save/$', order_save),
     url(r'^review/$', review),
     url(r'^invite/$', invite),
     url(r'^faq/$', faq),
