@@ -87,17 +87,35 @@ def email_send(request):
 		return redirect('/accounts/login/')
 	if request.method == 'POST':
 		data_goods = request.POST.get('data_goods', '')
-		phone = request.POST.get('phone', '')
+		phone = str(request.POST.get('phone', ''))
 
 		list_goods = json.loads(data_goods)
+		message1 = u'Создан заказ<br/><br/><table style="padding:5px; border:1px solid #ccc;"><tr><td style="padding:10px">  id  </td><td style="padding:10px">  Наименование  </td><td style="padding:10px">  Кол-во  </td><td style="padding:10px">  Цена за ед.  </td><td style="padding:10px">  Сумма  </td></tr>'
+		summ_itog = 0
+		for good in list_goods:
+			# this_good = Good.objects.filter(id=good['id'])
+			# for this in this_good:
+				# summ_good=this.price*int(good['count'])
+			summ_itog += int(good['count'])*int(good['price'])
+			message1 += u'<tr><td style="padding:10px">{0}</td><td style="padding:10px">{1}</td><td style="padding:10px">{2}</td><td style="padding:10px">{3}</td><td style="padding:10px">{4}</td></tr>'.format(good['id'],good['name'],good['count'],good['price'],int(good['count'])*int(good['price']))
+			
+			
 
+
+		message1 += u'</table><br/> Итого {0} рублей<br/> Телефон заказчика {1}'.format(summ_itog,phone)
 		subject = u'Заявка  - {0}'.format(phone)
-		message1 = u'Телефон: {0}<br/>'.format(phone)
 		message = u'{0}'.format(phone)
 
 		send_mail(subject, message, 'ddruzyam@mail.ru', ['makarow.dmitry@gmail.com'], fail_silently=False, html_message=message1)
-		return HttpResponse(list_goods)
+		return HttpResponse()
 
+# summ_itog = 0
+		# for good in list_goods:
+		# 	summ_itog += int(good['count'])*int(good['price'])
+		# 	message1 += u'<tr><td style="padding:5px; border:1px solid #ccc;">{0}</td><td style="padding:5px; border:1px solid #ccc;">{1}</td><td style="padding:5px; border:1px solid #ccc;">{2}</td><td style="padding:5px; border:1px solid #ccc;">{3}</td><td style="padding:5px; border:1px solid #ccc;">{4}</td></tr>'.format(good['id'],good['name'],good['count'],good['price'],int(good['count'])*int(good['price']))
+			
+			
 
+		# message1 += u
 
 	

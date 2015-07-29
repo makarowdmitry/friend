@@ -28,9 +28,9 @@
       <table class="table table-striped mystyle-table">
       {% for good in goods %}
         <tr id="{{ good.id }}">
-          <td>{{good.category}} {{good.specifications}}</td>        
+          <td class="name-goods">{{good.category}} {{good.specifications}}</td>        
           <td>
-            <select class=" selectpicker" id="{{good.price}}" >
+            <select class=" selectpicker" id="{{good.id}}" >
             <option selected value="1">1 шт </option>
             <option value="2">2 шт </option>
             <option value="3">3 шт </option>
@@ -120,17 +120,25 @@
 
           $(document).on('click','.send-email',function(){
 
+          
+          phone = $.trim($('input[name=phone]').val());
+          if(phone.length<3){
+            alert('Укажите телефон');
+          }
+          else{
+
           list_goods = []
 
           $('.selectpicker').each(function(i,elem) {
             var id_good = $(this).attr('id');
             var count_goods = $(this).val();
-            dict_good = {"id":id_good,"count":count_goods}
+            var name = $(this).parent("td").siblings(".name-goods").text();
+            var price = $(this).parent("td").siblings(".price-td").attr("id");
+            dict_good = {"id":id_good,"count":parseInt(count_goods),"price":price,"name":name}
             list_goods.push(dict_good);
           });
 
           data = JSON.stringify(list_goods);
-          phone = $('input[name=phone]').val();
 
           $.ajax({
               url: "/email_send/",
@@ -147,6 +155,8 @@
               window.location.replace("/thanks/");
               }
             });
+
+        }
 
 
 
