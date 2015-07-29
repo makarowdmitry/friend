@@ -76,11 +76,28 @@ def order(request,goods):
 		return redirect('/accounts/login/')
 
 	ids_goods = goods.split('_')
-
 	goods = Good.objects.filter(id__in=ids_goods)
 	summ_order = 0
 	for good in goods:
 		summ_order += int(good.price)
 	return render_to_response('order.html',{"goods": goods,"summ_order":summ_order})
+
+def email_send(request):
+	if not request.user.is_authenticated():
+		return redirect('/accounts/login/')
+	if request.method == 'POST':
+		data_goods = request.POST.get('data_goods', '')
+		phone = request.POST.get('phone', '')
+
+		list_goods = json.loads(data_goods)
+
+		subject = u'Заявка  - {0}'.format(phone)
+		message1 = u'Телефон: {0}<br/>'.format(phone)
+		message = u'{0}'.format(phone)
+
+		send_mail(subject, message, 'ddruzyam@mail.ru', ['makarow.dmitry@gmail.com'], fail_silently=False, html_message=message1)
+		return HttpResponse(list_goods)
+
+
 
 	

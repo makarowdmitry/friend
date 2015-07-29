@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^review/$', review),
     url(r'^invite/$', invite),
     url(r'^faq/$', faq),
+    url(r'^email_send/$', email_send),
     url(r'^order/g(?P<goods>.+)$', order),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^$', index),

@@ -30,22 +30,22 @@
         <tr id="{{ good.id }}">
           <td>{{good.category}} {{good.specifications}}</td>        
           <td>
-            <select class=" selectpicker selectpicker{{good.id}}" >
-            <option selected>1 шт </option>
-            <option>2 шт </option>
-            <option>3 шт </option>
-            <option>4 шт </option>
-            <option>5 шт </option>
-            <option>6 шт </option>
-            <option>7 шт </option>
-            <option>8 шт </option>
-            <option>9 шт </option>
-            <option>10 шт </option>
-            <option>11 шт </option>
-            <option>12 шт </option>        
+            <select class=" selectpicker" id="{{good.price}}" >
+            <option selected value="1">1 шт </option>
+            <option value="2">2 шт </option>
+            <option value="3">3 шт </option>
+            <option value="4">4 шт </option>
+            <option value="5">5 шт </option>
+            <option value="6">6 шт </option>
+            <option value="7">7 шт </option>
+            <option value="8">8 шт </option>
+            <option value="9">9 шт </option>
+            <option value="10">10 шт </option>
+            <option value="11">11 шт </option>
+            <option value="12">12 шт </option>        
             </select>  
           </td>
-          <td>{{good.price}}</td>
+          <td id="{{good.price}}" class="price-td">{{good.price}}</td>
           <td><a href="#" title="Удалить" data-toggle="modal" data-target=".bs-example-modal-sm" class="change-id" id="{{good.id}}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
           </td>
         </tr>
@@ -64,16 +64,13 @@
       </div>
 
       <div class="container-fluid text-right">      
-          <form class="form-inline pull-right">
+          <div class="form-inline pull-right" method="POST" action="">
           <div class="form-group ">
-          <input type="email" class="form-control input-order" id="exampleInputEmail2" placeholder="Введите телефон">
+          <input type="email" class="form-control input-order" name="phone" placeholder="Введите телефон">
           </div>
-          <button type="submit" class="btn-order-yes" href="/thanks">Заказать</button>
-          </form>    
-      </div>
-    
-
-        
+          <button class="btn-order-yes send-email">Заказать</button>
+          </div>    
+      </div>        
       </section>
 
     <!-- /Order section -->
@@ -94,6 +91,14 @@
           width: "75px",
         });
 
+        function update_summ(){
+           var order_summ = 0
+          $('.price-td').each(function(i,elem) {
+           order_summ += parseInt($(this).text());
+          });
+          $('.itog-price').text('Итого: '+order_summ+' руб');
+        }
+
         $(document).on('click','.change-id',function(){
           var id_good = $(this).attr('id');
           $('.remove-good').attr('id',id_good);
@@ -102,7 +107,52 @@
         $(document).on('click','.remove-good',function(){
           var id_good = $(this).attr('id');
           $('tr[id='+id_good+']').remove();
+          update_summ();
         });
+
+         $(document).on('change','.selectpicker',function(){
+          var selected_count= parseInt($(this).val());
+          var first_count = $(this).parent('td').next('td').attr("id");
+          var new_count = $(this).parent('td').next('td').text(parseInt(first_count)*selected_count);
+          update_summ();
+
+        });
+
+          $(document).on('click','.send-email',function(){
+
+          list_goods = []
+
+          $('.selectpicker').each(function(i,elem) {
+            var id_good = $(this).attr('id');
+            var count_goods = $(this).val();
+            dict_good = {"id":id_good,"count":count_goods}
+            list_goods.push(dict_good);
+          });
+
+          data = JSON.stringify(list_goods);
+          phone = $('input[name=phone]').val();
+
+          $.ajax({
+              url: "/email_send/",
+              dataType: "html",
+              type:"POST",
+              data: {
+                "data_goods":data,
+                "phone":phone,
+              },
+              error: function(){
+                alert("Ошибка соединения");
+              },
+              success: function(){
+              window.location.replace("/thanks/");
+              }
+            });
+
+
+
+
+        });
+
 
         
 

@@ -172,12 +172,20 @@ STATICFILES_DIRS = (os.path.join(os.path.dirname(BASE_DIR),'ff', 'static1'),)
 # Allauth
 
 
-EMAIL_HOST = 'email-smtp.eu-west-1.amazonaws.com'
-DEFAULT_FROM_EMAIL = 'noreply@teleport.ink'
-EMAIL_HOST_USER = 'AKIAJHXOKDVIIJIOHBGA'
-EMAIL_HOST_PASSWORD = 'AmS38L/HtvOH2IpYplONeY6VPKQVyzoSHGmlmYaxykNV'
-EMAIL_PORT = 587
+# EMAIL_HOST = 'email-smtp.eu-west-1.amazonaws.com'
+# DEFAULT_FROM_EMAIL = 'noreply@teleport.ink'
+# EMAIL_HOST_USER = 'AKIAJHXOKDVIIJIOHBGA'
+# EMAIL_HOST_PASSWORD = 'AmS38L/HtvOH2IpYplONeY6VPKQVyzoSHGmlmYaxykNV'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_PORT = 2525
+EMAIL_HOST_USER = 'ddruzyam@mail.ru'
+EMAIL_HOST_PASSWORD = 'kreanio24lKNL'
 EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'ddruzyam@mail.ru'
+SERVER_EMAIL = 'ddruzyam@mail.ru'
 
 
 
