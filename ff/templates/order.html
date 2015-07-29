@@ -1,18 +1,36 @@
+
 {% extends 'base_in.html' %}
+{% load staticfiles %}
 {% block title %}Оформление заказа{% endblock %}
 
 {% block content %}
 
-
+<!-- Small modal -->
+  <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Удалить товар?</h4>
+      </div>
+      <div class="modal-body text-center">
+        <button id="" data-dismiss="modal" aria-label="Close" class="btn remove-good btn-order-yes">Удалить</button>
+      </div>
+      
+    </div>
+  </div>
+</div>
     <!-- Order section -->
+
 
       <section class="container-fluid section-in section-table">
       <h1 class="text-center">Оформление заказа</h1>
       <table class="table table-striped mystyle-table">
-        <tr>
-          <td>Macbook Pro 13 Mgx72ru/a</td>        
+      {% for good in goods %}
+        <tr id="{{ good.id }}">
+          <td>{{good.category}} {{good.specifications}}</td>        
           <td>
-            <select class="selectpicker" >
+            <select class=" selectpicker selectpicker{{good.id}}" >
             <option selected>1 шт </option>
             <option>2 шт </option>
             <option>3 шт </option>
@@ -27,61 +45,22 @@
             <option>12 шт </option>        
             </select>  
           </td>
-          <td>34200</td>
-          <td><a href="#" title="Удалить"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+          <td>{{good.price}}</td>
+          <td><a href="#" title="Удалить" data-toggle="modal" data-target=".bs-example-modal-sm" class="change-id" id="{{good.id}}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
           </td>
         </tr>
+      
 
-        <tr>
-          <td>Macbook Pro 13 Mgx72ru/a</td>
-          <td>
-            <select class="selectpicker" >
-            <option selected>1 шт </option>
-            <option>2 шт </option>
-            <option>3 шт </option>
-            <option>4 шт </option>
-            <option>5 шт </option>
-            <option>6 шт </option>
-            <option>7 шт </option>
-            <option>8 шт </option>
-            <option>9 шт </option>
-            <option>10 шт </option>
-            <option>11 шт </option>
-            <option>12 шт </option>        
-            </select>  
-          </td>
-          <td>34200</td>
-          <td><a href="#" title="Удалить"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-          </td>
-        </tr>
+         
+        {% endfor %}
 
-        <tr>
-          <td>Macbook Pro 13 Mgx72ru/a</td>
+  
 
-          <td>
-            <select class="selectpicker" >
-            <option selected>1 шт </option>
-            <option>2 шт </option>
-            <option>3 шт </option>
-            <option>4 шт </option>
-            <option>5 шт </option>
-            <option>6 шт </option>
-            <option>7 шт </option>
-            <option>8 шт </option>
-            <option>9 шт </option>
-            <option>10 шт </option>
-            <option>11 шт </option>
-            <option>12 шт </option>        
-            </select>  
-          </td>
-          <td>34200</td>
-           <td><a href="#" title="Удалить"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-          </td>
-        </tr>
+
       </table>
 
       <div class="container-fluid">
-        <p class="text-right itog-price">Итого: <span>199000</span> руб</p>        
+        <p class="text-right itog-price">Итого: <span>{{summ_order}}</span> руб</p>        
       </div>
 
       <div class="container-fluid text-right">      
@@ -99,16 +78,36 @@
 
     <!-- /Order section -->
 
+     
 
+
+   
 
 {% endblock %}
 
   {% block script %}
-     <script>
-      $('.selectpicker').selectpicker(
+
+      <script src="{% static 'js/bootstrap-select.js' %}"></script>
+      <script>
+        $('.selectpicker').selectpicker(
         {
-          width: '75px',
+          width: "75px",
         });
+
+        $(document).on('click','.change-id',function(){
+          var id_good = $(this).attr('id');
+          $('.remove-good').attr('id',id_good);
+        });
+
+        $(document).on('click','.remove-good',function(){
+          var id_good = $(this).attr('id');
+          $('tr[id='+id_good+']').remove();
+        });
+
+        
+
       </script>
+
+  
 
   {% endblock %}

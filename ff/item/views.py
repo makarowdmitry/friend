@@ -12,6 +12,7 @@ import datetime
 from django.db.models import Count, Min, Sum
 from django.db import connection
 from django.core.mail import send_mail
+import json
 
 
 def index(request):
@@ -70,13 +71,16 @@ def faq(request):
 	faq = Faq.objects.all()
 	return render_to_response('faq.html',{'faq':faq})
 
-def order(request):
+def order(request,goods):
 	if not request.user.is_authenticated():
 		return redirect('/accounts/login/')
-	return render_to_response('order.html')
 
-def order_save(request):
-	if request.method == 'POST':
-		id_goods = request.POST.get('id_goods', '')		
-		return HttpResponse()
+	ids_goods = goods.split('_')
+
+	goods = Good.objects.filter(id__in=ids_goods)
+	summ_order = 0
+	for good in goods:
+		summ_order += int(good.price)
+	return render_to_response('order.html',{"goods": goods,"summ_order":summ_order})
+
 	

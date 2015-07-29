@@ -108,26 +108,11 @@
 
         if(json_goods.length > 0){
 
-             $.ajax({
-                    url: "/order_save/",
-                    type: "POST",
-                    // dataType:"html",
-                    data: {
-                        "id_goods": JSON.stringify(json_goods)
-                                            },
-                    error: function() {
-                        alert('Ошибка получения запроса');
-                         
-                    },
-                    success: function(){
-                      window.location.replace("/order");
-
-                    }
-                  });
-
+          string_ids = json_goods.join('_');
+          window.location.replace("/order/g"+string_ids);
         }
         else {
-          alert('Пусто')
+          alert('Пусто');
         }
 
      
