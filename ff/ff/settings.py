@@ -130,17 +130,23 @@ WSGI_APPLICATION = 'ff.wsgi.application'
 # }
 
 
+# DATABASES = {
+#     'default': {
+#     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#     'NAME': 'ff',
+#     'USER': 'sfriend',
+#     'PASSWORD': 'pi1l74gj',
+#     'HOST': 'friends.cjtnnllhd8uz.us-west-2.rds.amazonaws.com', # Set to empty string for localhost.
+#     'PORT': '5432', # Set to empty string for default.
+#     }
+# }
+
 DATABASES = {
     'default': {
-    'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    'NAME': 'ff',
-    'USER': 'sfriend',
-    'PASSWORD': 'pi1l74gj',
-    'HOST': 'friends.cjtnnllhd8uz.us-west-2.rds.amazonaws.com', # Set to empty string for localhost.
-    'PORT': '5432', # Set to empty string for default.
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 
 
