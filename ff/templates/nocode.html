@@ -4,13 +4,63 @@
 {% block contentright %}
         <div class="col-md-3 col-md-offset-1 right-block-index">
          
-            <form>
+            <form id="form-for-sent">
                <h3>Нет клубного кода?</h3>
-               <h4>Подайде заявку через</h4>
-              <ul class="list-inline social-icon text-left">
-              <li><i class="flaticon-facebook2"></i>Facebook</li>
-              <li><i class="flaticon-vk5"></i>Vk.com</li>
-              </ul>
-            </form>            
+               <h4>Подайде заявку</h4>
+              <input type="hidden" name="formname" value='Запрос Кода для вступления'>
+              <div class="form-group">
+              <input type="email" class="form-control input-text" id="exampleInputEmail1" placeholder="Ссылка на вашу страницу в соц.сети" name="social">
+              </div>
+            
+              <div class="form-group">
+              <input type="email" class="form-control input-text" id="exampleInputEmail1" placeholder="Email" name="email">
+              </div>
+              
+
+             </form>   
+              
+          
+            <button  class="btn btn-login  btn-code pull-right">            
+              <span class="glyphicon glyphicon-menu-right center-block" aria-hidden="true"></span>
+              </button>
+                    
         </div>
 {% endblock %}
+
+{% block script %}
+
+ <script type="text/javascript">
+  $(document).on('click','.btn-code', function(){
+
+    email = $.trim($('input[name=email]').val());
+    social = $.trim($('input[name=social]').val());
+    if(email.length<3 || social.length<3 ){
+          alert('Все поля обязательны');
+    }
+
+    else {
+
+      $.ajax({
+              url: "/email_send_all/",
+              dataType: "html",
+              type:"POST",
+              data: {"form": JSON.stringify($("#form-for-sent").serializeArray())},
+              error: function(){
+                alert("Ошибка соединения");
+              },
+              success: function(){
+              alert("Спасибо");
+              }
+            });
+
+
+    }      
+
+  });
+  </script>
+  {% endblock %}
+
+    
+
+  
+
