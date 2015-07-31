@@ -21,6 +21,21 @@ def index(request):
 
 	return redirect('/price/')
 
+def page_code(request):
+	return render_to_response('signup.html')
+
+def check_code(request):
+	code = request.POST.get('code', '')
+	try:
+		code_yes = Securecode.objects.get(code=code)
+		data = '/accounts/signup_yes2'
+
+	except:
+		data = 'error'
+
+
+	return HttpResponse(data)
+
 def signup(request):
 	return render_to_response('signup.html')
 
@@ -97,25 +112,30 @@ def email_send(request):
 			# for this in this_good:
 				# summ_good=this.price*int(good['count'])
 			summ_itog += int(good['count'])*int(good['price'])
-			message1 += u'<tr><td style="padding:10px">{0}</td><td style="padding:10px">{1}</td><td style="padding:10px">{2}</td><td style="padding:10px">{3}</td><td style="padding:10px">{4}</td></tr>'.format(good['id'],good['name'],good['count'],good['price'],int(good['count'])*int(good['price']))
+			message1 += u'<tr><td style="padding:10px">{0}</td><td style="padding:10px;">{1}</td><td style="padding:10px">{2}</td><td style="padding:10px">{3}</td><td style="padding:10px">{4}</td></tr>'.format(good['id'],good['name'],good['count'],good['price'],int(good['count'])*int(good['price']))
 			
 			
 
 
 		message1 += u'</table><br/> Итого {0} рублей<br/> Телефон заказчика {1}'.format(summ_itog,phone)
 		subject = u'Заявка  - {0}'.format(phone)
-		message = u'{0}'.format(phone)
+		message = u'Смотрите html версию'
 
-		send_mail(subject, message, 'ddruzyam@mail.ru', ['makarow.dmitry@gmail.com'], fail_silently=False, html_message=message1)
+		send_mail(subject, message, 'ddruzyam@mail.ru', ['makarow.dmitry@gmail.com','vpanter@bk.ru'], fail_silently=False, html_message=message1)
+		return HttpResponse(message1)
+
+def email_send_all(request):
+	if request.method == "POST":
+		data1 = request.POST.get('form','')
+		data = json.loads(data1)
+		message_html = u''
+		for item in data:			
+			message_html += item['value']+u'<br/><br/>'
+
+		subject = u'Заявка'
+		message = u'Смотрите html версию'
+
+		send_mail(subject, message, 'ddruzyam@mail.ru', ['makarow.dmitry@gmail.com','vpanter@bk.ru'], fail_silently=False, html_message=message_html)
 		return HttpResponse()
-
-# summ_itog = 0
-		# for good in list_goods:
-		# 	summ_itog += int(good['count'])*int(good['price'])
-		# 	message1 += u'<tr><td style="padding:5px; border:1px solid #ccc;">{0}</td><td style="padding:5px; border:1px solid #ccc;">{1}</td><td style="padding:5px; border:1px solid #ccc;">{2}</td><td style="padding:5px; border:1px solid #ccc;">{3}</td><td style="padding:5px; border:1px solid #ccc;">{4}</td></tr>'.format(good['id'],good['name'],good['count'],good['price'],int(good['count'])*int(good['price']))
-			
-			
-
-		# message1 += u
 
 	

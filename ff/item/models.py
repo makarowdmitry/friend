@@ -44,3 +44,13 @@ class Faq(models.Model):
     def __unicode__(self):
         return u'%s' % (self.question)
 
+class Securecode(models.Model):
+    code = models.CharField(max_length=250, verbose_name='Код')
+
+    class Meta:
+        verbose_name = 'Код'        
+        verbose_name_plural = 'Коды'
+
+    def __unicode__(self):
+        return u'%s' % (self.code)
+

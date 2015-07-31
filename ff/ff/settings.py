@@ -179,14 +179,21 @@ STATICFILES_DIRS = (os.path.join(os.path.dirname(BASE_DIR),'ff', 'static1'),)
 # EMAIL_PORT = 587
 # EMAIL_USE_TLS = True
 
-EMAIL_HOST = 'smtp.mail.ru'
-EMAIL_PORT = 2525
+# EMAIL_HOST = 'smtp.mail.ru'
+# EMAIL_PORT = 2525
+# EMAIL_HOST_USER = 'ddruzyam@mail.ru'
+# EMAIL_HOST_PASSWORD = 'kreanio24lKNL'
+# EMAIL_USE_TLS = True
+# DEFAULT_FROM_EMAIL = 'ddruzyam@mail.ru'
+# SERVER_EMAIL = 'ddruzyam@mail.ru'
+
+EMAIL_HOST = 'smtp.mandrillapp.com'
+EMAIL_PORT = 587
 EMAIL_HOST_USER = 'ddruzyam@mail.ru'
-EMAIL_HOST_PASSWORD = 'kreanio24lKNL'
+EMAIL_HOST_PASSWORD = '6y0c5vLKpOnqU0-YapJOlA'
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'ddruzyam@mail.ru'
 SERVER_EMAIL = 'ddruzyam@mail.ru'
-
 
 
 ACCOUNT_USERNAME_REQUIRED = False

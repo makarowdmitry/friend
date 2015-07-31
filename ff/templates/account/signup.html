@@ -15,9 +15,9 @@
         {% if redirect_field_value %}
           <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
           {% endif %}
-              <div class="form-group">
+             <!--  <div class="form-group">
               <input type="text" class="form-control input-text" id="exampleInputEmail1" placeholder="Клубный код">
-              </div>
+              </div> -->
 
                {% csrf_token %} 
   			<div class="form-group">
@@ -48,11 +48,11 @@
               <li><i class="flaticon-vk5"></i>Vk.com</li>
               </ul>
             </form>
-            <a href="/nocode">Нет клубного кода?</a> 
+            <!-- <a href="/nocode">Нет клубного кода?</a>  -->
             
         </div>
 {% endblock %}
 
-{% block clublogin %}<a href="/signup"> Вступить в клуб</a>{% endblock %}
+{% block clublogin %}<a href="/"> Войти в клуб</a>{% endblock %}
 
 

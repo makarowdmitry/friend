@@ -16,20 +16,55 @@
       
       <div class="row margin-my-block">
         <div class="col-md-6 col-md-offset-3">
-          <form>
+          <form id="form-for-sent">
           <div class="form-group">
-            <input type="text" class="form-control  input-order" id="exampleInputPassword1" placeholder="Введите телефон">
+          <input type="hidden" name="formname" value='Заявка из формы "Накопления #ДрузьямДрузей"'>
+            <input type="text" class="form-control  input-order" id="exampleInputPassword1" placeholder="Введите телефон" name="phone">
           </div>
          
-          <button type="submit" class="btn-order-yes pull-right">Сделать вклад</button>
+         
           <div class="clearfix"></div>
 
           <p class="text-right">Спасибо, мы свяжемся с вами в ближайшее время</p>
 
         </form>
+         <button class="btn-order-yes pull-right">Сделать вклад</button>
         </div>
       </div>
       </section>
+
+        <script type="text/javascript">
+  $(document).on('click','.btn-order-yes', function(){
+
+    phone = $.trim($('input[name=phone]').val());
+    if(phone.length<3){
+          alert('Укажите телефон');
+    }
+    else {
+
+      $.ajax({
+              url: "/email_send_all/",
+              dataType: "html",
+              type:"POST",
+              data: {"form": JSON.stringify($("#form-for-sent").serializeArray())},
+              error: function(){
+                alert("Ошибка соединения");
+              },
+              success: function(){
+              window.location.replace("/thanks/");
+              }
+            });
+
+
+    }      
+
+  });
+
+    
+
+  
+
+  </script>
 
     <!-- /Order section -->
      {% endblock %}

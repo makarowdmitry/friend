@@ -5,3 +5,4 @@ from item.models import *
 admin.site.register(Category)
 admin.site.register(Good)
 admin.site.register(Faq)
+admin.site.register(Securecode)

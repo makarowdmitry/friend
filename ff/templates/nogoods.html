@@ -9,25 +9,63 @@
       <h1 class="text-center">Узнать наличие и цену</h1>
       <div class="row margin-my-block">
         <div class="col-md-6 col-md-offset-3">
-          <form>
+          <form id="form-for-sent">
           <div class="form-group">
-            <textarea class="form-control input-order" rows="5" placeholder="Напишите точный код модели и ссылку на товар в нужной конфигурации"></textarea>
+           <input type="hidden" name="formname" value='Заявка из формы "Нет того что нужно?"'>
+            <textarea class="form-control input-order" rows="5" placeholder="Напишите точный код модели и ссылку на товар в нужной конфигурации" name="gooddesc"></textarea>
           </div>
           <div class="form-group">
-            <input type="text" class="form-control  input-order" id="exampleInputPassword1" placeholder="Введите телефон">
+            <input type="text" class="form-control  input-order" id="exampleInputPassword1" placeholder="Введите телефон" name="phone">
           </div>
          
-          <button type="submit" class="btn-order-yes pull-right">Запросить</button>
+          
           <div class="clearfix"></div>
 
           <p class="text-right">Мы свяжемся с вами в ближайшее время Спасибо</p>
 
         </form>
+        <button class="btn-order-yes pull-right">Запросить</button>
         </div>
       </div>
       </section>
 
     <!-- /Order section -->
+
+
+
+  
+  <script type="text/javascript">
+  $(document).on('click','.btn-order-yes', function(){
+
+    phone = $.trim($('input[name=phone]').val());
+    if(phone.length<3){
+          alert('Укажите телефон');
+    }
+    else {
+
+      $.ajax({
+              url: "/email_send_all/",
+              dataType: "html",
+              type:"POST",
+              data: {"form": JSON.stringify($("#form-for-sent").serializeArray())},
+              error: function(){
+                alert("Ошибка соединения");
+              },
+              success: function(){
+              window.location.replace("/thanks/");
+              }
+            });
+
+
+    }      
+
+  });
+
+    
+
+  
+
+  </script>
 
 
 

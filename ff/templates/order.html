@@ -63,7 +63,7 @@
         <p class="text-right itog-price">Итого: <span>{{summ_order}}</span> руб</p>        
       </div>
 
-      <div class="container-fluid text-right">      
+      <div class="container-fluid text-right section-table-order">      
           <div class="form-inline pull-right" method="POST" action="">
           <div class="form-group ">
           <input type="email" class="form-control input-order" name="phone" placeholder="Введите телефон">
@@ -151,21 +151,14 @@
               error: function(){
                 alert("Ошибка соединения");
               },
-              success: function(){
+              success: function(data){
+              // alert(data);
               window.location.replace("/thanks/");
               }
             });
 
         }
-
-
-
-
         });
-
-
-        
-
       </script>
 
   

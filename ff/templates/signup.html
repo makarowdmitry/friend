@@ -6,24 +6,56 @@
         <div class="col-md-3 col-md-offset-1 right-block-index">
             <form>
               <div class="form-group">
-              <input type="text" class="form-control input-text" id="exampleInputEmail1" placeholder="Клубный код">
+              <input type="text" class="form-control input-text" id="exampleInputEmail1" placeholder="Клубный код" name="code">
               </div>
-              <div class="form-group">
-              <input type="email" class="form-control input-text" id="exampleInputEmail1" placeholder="Эл.почта">
-              </div>
-              <div class="form-group">
-              <input type="password" class="form-control input-text" id="exampleInputPassword1" placeholder="Пароль">
-              </div>
-              <button type="submit" class="btn btn-login pull-right">            
+              
+            </form>
+            <button  class="btn btn-login  btn-code pull-right">            
               <span class="glyphicon glyphicon-menu-right center-block" aria-hidden="true"></span>
               </button>
-
-              <ul class="list-inline social-icon text-left">
-              <li><i class="flaticon-facebook2"></i>Facebook</li>
-              <li><i class="flaticon-vk5"></i>Vk.com</li>
-              </ul>
-            </form>
             <a href="/nocode">Нет клубного кода?</a>    
             
         </div>
+      
+
+
+
+{% endblock %}
+
+{% block script %}
+
+  <script type="text/javascript">
+  
+  $(document).on('click','.btn-code', function(){
+
+    code= $.trim($('input[name=code]').val());
+    if(code.length<3){
+          alert('Укажите код');
+    }
+    else {
+
+      $.ajax({
+              url: "/check_code/",
+              dataType: "html",
+              type:"POST",
+              data: {"code": code},
+              error: function(){
+                alert("Ошибка соединения");
+              },
+              success: function(data){
+                if (data=="error") {
+                  alert('Неверный код')
+                }
+                else{
+                  window.location.replace(data);
+                }
+              
+              }
+            });
+
+
+    }      
+
+  });
+</script>
 {% endblock %}
